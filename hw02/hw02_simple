@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <assert.h>
+#define __USE_MISC
+#include <math.h>
+#define LUT_LEN (360)
+
+
+float lookup_table[LUT_LEN];
+
+
+int fact(int factorial_quantity)
+{
+    int fact = 1;
+
+    for (int i = 1; i <= factorial_quantity; i++)
+    {
+        fact *= i;
+    }
+
+    return fact;
+}
+
+float maclaurin_sine(float input_angle)
+{
+	float x, sine;
+
+	x = input_angle * (M_PI/180);
+
+	sine = x - pow(x,3)/fact(3) + pow(x,5)/fact(5)
+	         - pow(x,7)/fact(7) + pow(x,9)/fact(9);
+
+	return sine;
+}
+
+void init(void)
+{
+	for(size_t i = 0; i < LUT_LEN; i++)
+	{
+ 		lookup_table[i] = maclaurin_sine((float)i);
+ 	}
+}
+
+
+float sin_(float input_angle)
+{
+	// this function needs to linearly interpolate between "points" in my lookup table (populated my maclaurin_sine()) 
+	// in order to return a more accurate answer.
+	return sin_;
+}
+
+
+float error_(float input_angle)
+{	
+	float error_ = sin(input_angle) - sin_(input_angle);
+
+	return error_;
+}
+
+
+int main (void)
+{
+	init();
+
+	float input_angle;
+	printf("Enter an angle: \n");
+	scanf("%f", &input_angle);
+
+	if (input_angle == -1)
+	{
+		exit(0);
+	}
+
+	assert(input_angle < 360.0);
+	assert(input_angle >= 0.0);
+
+	printf("%f %f %f %f", input_angle, sin(input_angle), sin_(input_angle), error_(input_angle));
+
+	return 0;
+}
