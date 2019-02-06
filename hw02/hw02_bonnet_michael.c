@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
-#include <math.h>
-#define LUT_LEN (360)
 #define PI 3.14159265358979323846
+#include <math.h>
 
 
-float lookup_table[LUT_LEN];
+float lookup_table[360];
 
 
 int fact(int factorial_quantity)
@@ -43,7 +42,8 @@ float taylorseries_(float input_angle)
 
 void init(void)
 {
-    int tempx;
+    int supplement;
+    int explement;
 
     for(size_t i = 0; i < 91; i++)
     {
@@ -52,14 +52,14 @@ void init(void)
 
     for(size_t i = 91; i < 181; i++)
     {
-        tempx = 180 - i;
-        lookup_table[i] = lookup_table[tempx];
+        supplement = 180 - i;
+        lookup_table[i] = lookup_table[supplement];
     }
 
     for(size_t i = 181; i < 360; i++)
     {
-        tempx = i - 180;
-        lookup_table[i] = (-1) * lookup_table[tempx];
+        explement = i - 180;
+        lookup_table[i] = (-1) * lookup_table[explement];
     }
 }
 
@@ -116,7 +116,7 @@ int main (void)
         {
             return 0;
         }
-        else
+            else
             {
                 printf("%f %f %f %f\n", input_angle, sin_(input_angle), sin(deg_to_rad(input_angle)), error_(input_angle));
             }
