@@ -65,9 +65,6 @@ float taylorseries_(float input_angle)
 // populate the domain up to 90 degrees, and then uses unit circle rules to populate
 // the remaining 3/4 of the domain.
 // This function happens in the background and requires no user interaction.
-
-//  // This assert() checks that the quantity equal to PI is in fact mathematical pi.
-
 void init(void)
 {
     assert(PI == 3.14159265358979323846); // This assert checks to make certain I have the proper value of pi.
