@@ -4,6 +4,7 @@
 #include <math.h>
 
 
+// The purpose of the following variable is to act as a single dimensional array storing the sin of each index as that index's value.
 float lookup_table[360];
 
 
@@ -21,6 +22,12 @@ int fact(int factorial_quantity)
         fact *= i;
     }
 
+    assert(fact != 0); // this assert tests if somehow the factorial has come to be equal to zero,
+                       // which would cause a division by zero error in the taylorseries_ function.
+
+    assert(fact > 0);  // this assert tests if somehow the factorial has come to be less than zero,
+                       // which would severely effect the results of the taylorseries_ function.
+
     return fact;
 }
 
@@ -32,7 +39,7 @@ int fact(int factorial_quantity)
 // and requires no user activity.
 float deg_to_rad(float input_angle)
 {
-
+    assert(PI == 3.14159265358979323846); // This assert checks to make certain I have the proper value of pi.
     float deg_to_rad = input_angle * (PI/180);
 
     return deg_to_rad;
@@ -52,25 +59,23 @@ float taylorseries_(float input_angle)
     sine = x - pow(x,3)/fact(3) + pow(x,5)/fact(5)
              - pow(x,7)/fact(7);
 
-    assert(sine <= 1.0);  // This assert statement checks that the value of sine is within the normal period of sine from the right, from -1 to 1.
-    assert(sine >= -1.0); // This assert statement checks that the value of sine is within the normal period of sine from the left, from -1 to 1.
-
     return sine;
 }
 
 
 // The purpose of the following function is to populate the global variable
 // lookup table with roughly accurate results of sine(x) for x >= 0 and x < 360.
-// The following function achieves this through using a Taylor Series to accurately
-// populate the domain up to 90 degrees, and then uses unit circle rules to populate
-// the remaining 3/4 of the domain.
+// The following function achieves this through:
+// (1) iterating through i for range 91 > i >= 0,
+//     assigning the results to the corresponding indexes.
+// (2) mirroring the results of (1) to the indexes 180 > i >= 91
+//     assigning the results to the corresponding indexes.
+// (3) iterating through the lookup table range 360 > i >= 181,
+//     assigning each index with the value of the mirror index * (-1), as the bottom half of the unit circle is negative in sin.
 // This function happens in the background and requires no user interaction.
 void init(void)
 {
-    assert(PI == 3.14159265358979323846); // This assert checks to make certain I have the proper value of pi.
-
-    int supplement;
-    int explement;
+    int mirror_value;
 
     for(size_t i = 0; i < 91; i++)
     {
@@ -79,20 +84,23 @@ void init(void)
 
     for(size_t i = 91; i < 181; i++)
     {
-        supplement = 180 - i;
-        lookup_table[i] = lookup_table[supplement];
+        mirror_value = 180 - i;
+        lookup_table[i] = lookup_table[mirror_value];
     }
 
     for(size_t i = 181; i < 360; i++)
     {
-        explement = i - 180;
-        lookup_table[i] = (-1) * lookup_table[explement];
+        mirror_value = i - 180;
+        lookup_table[i] = (-1) * lookup_table[mirror_value];
     }
 }
 
-
 // The purpose of the following function is to linearly interpolate between two (x, y) ordered pairs.
 // The following function achieves this through implementing the basic linear interpoplation equation.
+// What is essentially happening here is taking the two ordered pairs as the index and index value
+// whose indexes are the upper and lower bounds of the range in which the true x value could be.
+// The function then executes a slightly moved around version of the common linear interpolation equation,
+// solving for y, which should be roughly in the neighborhood of the correct sin of the true x value.
 // This function happens in the background and requires no user interaction.
 float interpolation(float x0, float y0, float x1, float y1, float x)
 {
@@ -115,19 +123,24 @@ float sin_(float input_angle)
     int lowest_x_value = input_angle;
     int highest_x_value = lowest_x_value + 1;
 
-    if (input_angle < 0 || input_angle >= 360)
+    if (input_angle < 0.0)
     {
         return 0.0;
     }
+        else if (input_angle >= 360.0)
+        {
+            return 0.0;
+        }
+            else if (lowest_x_value == input_angle)
+            {
+                return lookup_table[lowest_x_value];
+            }
+                else
+                {
+                    result = interpolation(lowest_x_value, lookup_table[lowest_x_value], highest_x_value, lookup_table[highest_x_value], input_angle);
 
-    if (lowest_x_value == input_angle)
-    {
-        return lookup_table[lowest_x_value];
-    }
-
-    result = interpolation(lowest_x_value, lookup_table[lowest_x_value], highest_x_value, lookup_table[highest_x_value], input_angle);
-
-    return result;
+                    return result;
+                }
 }
 
 // The purpose of the following function is to find the error, or difference,
@@ -157,8 +170,6 @@ int main (void)
 
     do
     {
-
-        printf("Enter an angle in degrees, where 0 <= angle < 360: \n");
         scanf("%f", &input_angle);
 
         if (input_angle == -1)
