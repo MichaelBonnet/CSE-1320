@@ -3,7 +3,8 @@
 #define PI (3.14159265358979323846)
 #include <math.h>
 
-// I'm quite proud of the fact that like 20%+ of this file is comments.
+// I'm quite proud of the fact that like ~30% of this file is comments.
+// I still want to find a sexier/more concise way to implement taylorseries_().
 
 // The purpose of the following variable is to act as a single dimensional array storing the sin of each index as that index's value.
 float lookup_table[360];
