@@ -3,6 +3,7 @@
 #define PI (3.14159265358979323846)
 #include <math.h>
 
+// I'm quite proud of the fact that like 20%+ of this file is comments.
 
 // The purpose of the following variable is to act as a single dimensional array storing the sin of each index as that index's value.
 float lookup_table[360];
@@ -93,6 +94,15 @@ void init(void)
         mirror_value = i - 180;
         lookup_table[i] = (-1) * lookup_table[mirror_value];
     }
+
+    // The following four asserts simply check that halfway through each quadrant,
+    // that the values in that quadrant have the correct sign.
+    // This makes sure that the lookup table is at least somewhat usable,
+    // and won't church out wholly unrecognizable results.
+    assert(lookup_table[45]  > 0);
+    assert(lookup_table[135] > 0);
+    assert(lookup_table[225] < 0);
+    assert(lookup_table[315] < 0);
 }
 
 // The purpose of the following function is to linearly interpolate between two (x, y) ordered pairs.
