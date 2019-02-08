@@ -53,13 +53,12 @@ float deg_to_rad(float input_angle)
 // The following function achieves this through summing the first 4 terms of the taylor series sequentially.
 // This function happens in the background and requires no user interaction.
 float taylorseries_(float input_angle)
+float taylorseries_(float input_angle)
 {
-    float x, sine;
+    float  sine;
 
-    x = input_angle;
-
-    sine = x - pow(x,3)/fact(3) + pow(x,5)/fact(5)
-             - pow(x,7)/fact(7);
+    sine = input_angle - pow(input_angle,3)/fact(3) + pow(input_angle,5)/fact(5)
+             - pow(input_angle,7)/fact(7);
 
     return sine;
 }
