@@ -1,0 +1,192 @@
+only return from a function in one place
+
+---------------
+ BIT OPERATION
+---------------
+
+let you set and unset single bits
+
+set    = change value to 1
+unset  = change value to 0
+
+ OR sets bits
+AND unsets bits
+
+ OR cannot unset bits
+AND cannot set bits
+
+ OR changes bit values to 1
+AND changes bit values to 0
+
+ OR cannot change bit values to 0
+AND cannot change bit values to 1
+
+NOT sets all unset bits
+NOT unsets all set bits
+
+NOT changes all bit values 1 to 0
+NOT changes all bit values 0 to 1
+
+-----------------------
+ Bit Operation Symbols
+-----------------------
+
+[In Order of Operations]
+
+Operator    Name
+~           NOT (Negation, setting all unset and unsetting all set)
+>>          Right shift
+<<          Left shift
+&           AND (for unsetting)
+^           XOR
+|           OR (for setting)
+
+--------------
+ Truth Tables
+--------------
+
+NOT (~)
+[SINGLE INPUT; OUTPUT IS OPPOSITE OF INPUT]
+0 = 1
+1 = 0
+
+RIGHT SHIFT (>>)
+[SHIFTS BITS RIGHT BY SPECIFIED # OF BITS]
+
+LEFT SHIFT  (>>)
+[SHIFTS BITS  LEFT BY SPECIFIED # OF BITS]
+
+AND (&)
+[BOTH INPUTS MUST BE TRUE TO RESULT IN TRUE OUTPUT]
+0 0 = 0
+0 1 = 0
+1 0 = 0
+1 1 = 0
+
+XOR (^)
+[ONE AND ONLY ONE CONDITION MUST BE TRUE TO RESULT IN TRUE OUTPUT]
+0 0 = 0
+0 1 = 1
+1 0 = 1
+1 1 = 0
+
+OR (|)
+[EITHER OR BOTH CONDITION MUST BE TRUE TO RESULT IN TRUE OUTPUT]
+0 0 = 0
+0 1 = 1
+1 0 = 1
+1 1 = 1
+
+
+
+
+A = 4 -> 0100 each bit set
+A = A | 2 -> 0110 == 6
+			  ^ this bit
+
+A = 0100 OR
+2 = 0010
+  = 0110
+
+A = A & 1101 = 0010
+
+SET A 0 TO 1:
+USE AND (^)
+
+0 & 1
+= 0000 0000 &
+  0000 0001 
+= 0000 0001
+
+0 & 2
+= 0000 0000 &
+  0000 0010
+= 0000 0010
+
+0 & 4
+= 0000 0000 &
+  0000 0100 
+= 0000 0100
+
+0 & 8
+= 0000 0000 &
+  0000 1000
+= 0000 1000
+
+0 & 16
+= 0000 0000 &
+  0001 0000 
+= 0001 0000
+
+0 & 32
+= 0000 0000 &
+  0010 0000
+= 0010 0000
+
+0 & 64
+= 0000 0000 &
+  0100 0000
+= 0100 0000
+
+= 0 & 128
+  0000 0000 &
+  1000 0000
+= 1000 0000
+
+
+SET A 1 TO 0:
+USE OR (^)
+
+255 & 1
+= 1111 1111 &
+  0000 0001
+= 1111 1110
+
+255 & 2
+= 1111 1111 &
+  0000 0010
+= 1111 1101
+
+255 & 4
+= 1111 1111 &
+  0000 0100
+= 1111 1011
+
+255 & 8
+= 1111 1111 &
+  0000 1000
+= 1111 0111
+
+225 & 16
+= 1111 1111 &
+  0001 0000
+= 1110 1111
+
+225 & 32
+= 1111 1111 &
+  0010 0000
+= 1101 0000
+
+225 & 64
+= 1111 1111 &
+  0100 0000
+= 1111
+
+225 128
+= 1111 1111 &
+  1000 0000
+= 1111
+
+
+
+
+
+
+
+
+
+
+
+
+
+Set a 1 bit to 1:
