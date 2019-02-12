@@ -11,7 +11,7 @@ void calculator_view(int input)
 unsigned bitmask(unsigned startBit)
 {
 	return ((1 << 4) - 1) << startBit;
-}
+} 
 
 
 // the main function executes all other functions to get desired output.
