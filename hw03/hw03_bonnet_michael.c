@@ -1,7 +1,11 @@
 #include<stdio.h>
 
 
-char calculator[5][6];
+void calculator_view(int input)
+{
+	char calculator[5][6];
+}
+
 
 unsigned bitmask(unsigned startBit)
 {
@@ -12,6 +16,7 @@ unsigned bitmask(unsigned startBit)
 int main(void)
 {
 	unsigned int input;
+	int digit_storage[8];
 	
 	do
     {
@@ -23,10 +28,15 @@ int main(void)
         }
         else
         {
-            for (unsigned int i = 0; i <= 28; i+=4)
+            for (int i = 0; i <= 28; i+=4)
             {
-            	printf("%x\n",  ((input & bitmask(i)) >> i) );
-            }        
+            	digit_storage[i / 4] = ((input & bitmask(i)) >> i);
+            	printf("%d\n",  ((input & bitmask(i)) >> i) );
+            }
+            for (int i = 7; i > -1; i--)
+    		{
+    			printf("%d\n", digit_storage[i]);
+    		}
         }
     } while (input != -1);
 
