@@ -6,7 +6,7 @@ void line1(int input)
 }
 
 void line2()
-{
+{ 
 	if (input == 0 | 8 | 9 )     { printf("%c%c%c%c%c%c", '|', ' ', ' ', ' ', '|', ' ') }
 	if (input == 1 | 3 )         { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', '|', ' ') }
 	if (input == 2 | 7 )         { printf("%c%c%c%c%c%c", ' ', ' ', ' ', '/', ' ', ' ') }
