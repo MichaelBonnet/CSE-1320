@@ -92,7 +92,6 @@ int main(void) // the main function executes all other functions to get desired 
     
     do
     {
-        printf("Enter integer value: "); // prompts user for input
         scanf("%d", &input); // reads user input from stdin
         if (input == -1) // checks to see if the user wants to exit the program, done by typing -1 for input
         {
