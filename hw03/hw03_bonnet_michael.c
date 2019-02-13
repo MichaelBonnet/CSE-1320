@@ -2,26 +2,26 @@
 #include<assert.h>
 // I could save 20 lines and get under 100 if I used K & R formatting, but doing it this way just makes it much more readable to me
 
-void line1(int input) // prints the proper expression of the 5th line of each possible 0-9 digit
+void line1(int input) // prints the 1st line of the proper "calculator view" expression of an input digit 0-9
 {
-    assert(input < 10); // to be in BCD, input cannot be greater than 9. Should have been caught in main, but whatever.
+    assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
     if ( input == 0 || input == 8 || input == 9 )               { printf("%c%c%c%c%c%c", ' ', '-', '-', '-', ' ', ' '); }
     if ( input == 2 || input == 3 || input == 5 || input == 7 ) { printf("%c%c%c%c%c%c", '-', '-', '-', '-', ' ', ' '); }
     if ( input == 1 || input == 4 || input == 6 )               { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', ' ', ' '); }
 }
 
-void line2(int input) // prints the proper expression of the 5th line of each possible 0-9 digit
+void line2(int input) // prints the 2nd line of the proper "calculator view" expression of an input digit 0-9
 {
-    assert(input < 10); // to be in BCD, input cannot be greater than 9. Should have been caught in main, but whatever.
+    assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
     if ( input == 0 || input == 8 || input == 9 )               { printf("%c%c%c%c%c%c", '|', ' ', ' ', ' ', '|', ' '); }
     if ( input == 1 || input == 3 )                             { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', '|', ' '); }
     if ( input == 2 || input == 7 )                             { printf("%c%c%c%c%c%c", ' ', ' ', ' ', '/', ' ', ' '); }
     if ( input == 4 || input == 5 || input == 6 )               { printf("%c%c%c%c%c%c", '|', ' ', ' ', ' ', ' ', ' '); } 
 }
 
-void line3(int input) // prints the proper expression of the 5th line of each possible 0-9 digit
+void line3(int input) // prints the 3rd line of the proper "calculator view" expression of an input digit 0-9
 {
-    assert(input < 10); // to be in BCD, input cannot be greater than 9. Should have been caught in main, but whatever.
+    assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
     if ( input == 0 )                                           { printf("%c%c%c%c%c%c", '|', ' ', ' ', ' ', '|', ' '); }
     if ( input == 1 )                                           { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', '|', ' '); }
     if ( input == 2 || input == 7 )                             { printf("%c%c%c%c%c%c", ' ', ' ', '/', ' ', ' ', ' '); }
@@ -29,9 +29,9 @@ void line3(int input) // prints the proper expression of the 5th line of each po
     if ( input == 6 || input == 8 || input == 9 )               { printf("%c%c%c%c%c%c", ' ', '-', '-', '-', ' ', ' '); }
 }
 
-void line4(int input) // prints the proper expression of the 5th line of each possible 0-9 digit
+void line4(int input) // prints the 4th line of the proper "calculator view" expression of an input digit 0-9
 {
-    assert(input < 10); // to be in BCD, input cannot be greater than 9. Should have been caught in main, but whatever.
+    assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
     if ( input == 0 || input == 8 || input == 6)                { printf("%c%c%c%c%c%c", '|', ' ', ' ', ' ', '|', ' '); }
     if ( input == 1 || input == 3 || input == 5 || input == 9 ) { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', '|', ' '); }
     if ( input == 2 || input == 7 )                             { printf("%c%c%c%c%c%c", ' ', '/', ' ', ' ', ' ', ' '); }
@@ -39,9 +39,9 @@ void line4(int input) // prints the proper expression of the 5th line of each po
 
 }
 
-void line5(int input) // prints the proper expression of the 5th line of each possible 0-9 digit
+void line5(int input) // prints the 1st line of the proper "calculator view" expression of an input digit 0-9
 {
-    assert(input < 10); // to be in BCD, input cannot be greater than 9. Should have been caught in main, but whatever.
+    assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
     if ( input == 0 || input == 6 || input == 8 )               { printf("%c%c%c%c%c%c", ' ', '-', '-', '-', ' ', ' '); }
     if ( input == 1 || input == 7 || input == 9 )               { printf("%c%c%c%c%c%c", ' ', ' ', ' ', ' ', ' ', ' '); }
     if ( input == 2 || input == 3 ||  input ==5 )               { printf("%c%c%c%c%c%c", '-', '-', '-', '-', ' ', ' '); }
