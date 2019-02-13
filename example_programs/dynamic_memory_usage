@@ -1,0 +1,11 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+int main(int argc,char *argv[]) 
+{ 
+    int* countptr=NULL; 
+    countptr = (int*) malloc(sizeof(int)); 
+    *countptr = 2; 
+    printf("%d\n",*countptr); 
+    free(countptr); 
+    return 0; 
+}
