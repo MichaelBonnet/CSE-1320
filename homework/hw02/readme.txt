@@ -1,14 +1,10 @@
-The purpose of this readme file is to explain the nature/purpose of each file in this folder of the CSE-1320 repository.
+the folder 'professor_files' contains all files posted by the professor that pertain to this assignment.
 
-abstract.txt explains the assignment's goals in terms of what was to be achieved and what was to be learned,
-along with some implementation/good practice comments and thanks.
+the file 'abstract.txt' is a text file that explains the assignment's goals in terms of what was to be achieved and what was to be learned,   along with some implementation/good practice comments and thanks. This file was made as a "code report" to make up for deleting
+  a question about it that I posted on /r/C_Programming.
 
-readme.txt is this file, the table of contents for files in this folder.
+the file 'hw02_bonnet_michael.c' is the main .c file for the assignment and the single file I turned in.
 
-hw02_bonnet_michael.c is the file I turned in as my assignment. 
+the file 'hw02_bonnet_michael_no_asserts_or_comments.c' is the main .c file but is modified to only contain pure code, as a vain way to       show off my code succinctness - 132 lines vs 200-500 for other students.
 
-hw02_bonnet_michael_version_current.c is the current version of this project as I optimize it/make it more readable.
-    Note: I have not yet made this file.
-
-hw02_bonnet_michael_no_asserts_or_comments.c is the version of the previous file without asserts or comments - just the pure logic and
-arithmetic. Basically me showing off/motivating myself to make it more succint. 
+the file 'readme.txt' is this file.
