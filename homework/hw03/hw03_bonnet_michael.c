@@ -90,14 +90,14 @@ int main(void) // the main function executes all other functions to get desired 
     unsigned int input; // this is the term that the user inputs and is processed into desired output.
     int digit_storage[8]; // this array stores the terms created by the do-while loop for later use
     
-    do
+    do // do-while loop ensures the user is prompted for input at least once, and is repeatedly prompted until they want to exit.
     {
         scanf("%d", &input); // reads user input from stdin
         if (input == -1) // checks to see if the user wants to exit the program, done by typing -1 for input
         {
             break; // exits the loop if the user types -1, the exit condition
         }
-        else
+        else // if the user has not entered the exit condition, the entire else block executes and the if-else finishes.
         {
             for (int i = 0; i <= 28; i+=4) // loops through each bit starting from the rightmost
             {
@@ -111,5 +111,5 @@ int main(void) // the main function executes all other functions to get desired 
             calculator(digit_storage); // prints out calculator view
         }
     } while (input != -1); // keeps prompting for input until the user types -1 to exit
-    return 0;
+    return 0; // return statement
 }
