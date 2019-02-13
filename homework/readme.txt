@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-the folder 'hw01' contains all files having to do with Homework Assignment 1
-
-the folder 'hw02' contains all files having to do with Homework Assignment 2
-
-the folder 'hw03' contains all files having to do with Homework Assignment 3
-=======
 the folder 'hw01' contains all files having to do with Homework Assignment 1,
   an assignment to find the mean, median, min, max, and sum of 5 entered integers.
     Grade Received: 0.65/1, points lost for "not doing all data sets".
