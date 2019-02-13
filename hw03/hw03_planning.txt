@@ -1,36 +1,31 @@
 1) accepts an integer input (base 10)
-2) integer input is stored in packed BCD format.
-3) using said format, display sequence to calculator display.
+2) integer input is considered to be an expression of a different integer stored in packed BCD.
+3) display the number "stored in packed BCD" sequence to calculator display.
 
 A) comments
 B) pre/post + assert
-C) 100 lines
+C) around 100 lines, including asserts and commends
 
-X) int is 4 bytes, 32 bit
-X)
-X)
-X)
-
+Input: 4660
+Output: 
  ---   ---   ---   ---        ----  ----       
 |   | |   | |   | |   |     |    /      | |    
 |   | |   | |   | |   |     |   /   ----  ---- 
 |   | |   | |   | |   |     |  /        |   ^  
  ---   ---   ---   ---        ----  ----    ^  
 
+Input: 39321
+Output:
  ---   ---   ---   ---   ---   ---   ---   ---  
 |   | |   | |   | |   | |   | |   | |   | |   | 
 |   | |   | |   | |   |  ---   ---   ---   ---  
 |   | |   | |   | |   |     |     |     |     | 
  ---   ---   ---   ---                          
 
+Input: 305419896
+Output: 
       ----  ----       ----        ----   ---  
     |    /      | |    |     |        /  |   | 
     |   /   ----  ---- ----   ---    /    ---  
     |  /        |   ^      | |   |  /    |   | 
       ----  ----    ^  ----   ---         ---  
-
- ---   ---   ---   ---   ---   ---   ---   ---  
-|   | |   | |   | |   | |   | |   | |   | |   | 
-|   | |   | |   | |   |  ---   ---   ---   ---  
-|   | |   | |   | |   |     |     |     |     | 
- ---   ---   ---   ---                          
