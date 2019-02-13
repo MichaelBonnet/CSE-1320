@@ -1,3 +1,5 @@
+the folder 'professor_files' contains all files posted by the professor that pertain to this assignment.
+
 the file 'calculator_view_implementation.c' is simply a snippet of the main .c file that contains only the functions
   used to create the modified calculator view required by the assignment.
   
