@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<assert.h>
 // I could save 20 lines and get under 100 if I used K & R formatting, but doing it this way just makes it much more readable to me
-
+// excuse the odd formatting of the lineX functions, it helps me read it better and keeps it compact.
 void line1(int input) // prints the 1st line of the proper "calculator view" expression of an input digit 0-9
 {
     assert(input < 10); // to be in BCD, input cannot be >1 digit, aka cannot be >9. Should have been caught in main, but whatever.
