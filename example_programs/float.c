@@ -34,7 +34,7 @@ int main(int argc,char* argv[])
    printf("%p %08x\n",ptr,*ptr);
    ptr++;
    printf("%p %08x\n",ptr,*ptr);
-   ptr++;
+   ptr++; 
    printf("%p %08x\n",ptr,*ptr);
 
    return 0;
