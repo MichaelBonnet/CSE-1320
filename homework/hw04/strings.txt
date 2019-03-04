@@ -1,0 +1,4 @@
+strcmp(const char *str1, const char *str2)
+	if return < 0, str1 < str2
+	if return > 0, str1 > str2
+	if return = 0, str1 = str2

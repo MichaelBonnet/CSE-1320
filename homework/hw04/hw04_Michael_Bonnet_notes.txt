@@ -1,0 +1,47 @@
+TEXT DATA FILES:
+2anagrams.txt
+2anagrams_not2anagrams.txt
+not2anagrams.txt
+test_negativeone.txt
+words.txt
+
+
+Purpose:
+    • String Manipulation
+    • Simple Array Based Data Structures
+
+Assignment:
+
+From Wikipedia:
+
+“An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.”
+
+Along with this assignment, there is a data file posted to blackboard.  It is called words.txt.  In this file are a couple (thousand) English words.  
+
+Determine all of the anagrams in this file.  The output will be a list of all the anagrams and the number that you have found.  Each group of anagrams will be printed on a single line.  See below for example output.
+
+    1) Use bash file indirection, as in previous assignments, to access the data file in your program.
+    2) If you need to define the size of arrays used, the max size needed will be 400,000.  This is larger than required for this assignment, but it will be needed for the following assignment (hw4+).
+    3) “ulimit -s “ is the bash command to see or change your stack limit.  Depending on where your large arrays are defined, this may need to be changed.
+    4) No word is greater than 1024 characters.  Use this fact when reading in the file.
+    5) The last name in the file is the character string “-1”.  Use this value to detect the end of data to be processed.
+    6) Create a directory named “hw04_firstName_lastName”  (with your name in place of firstName and lastName).  Inside this directory will be your source code, the data file, and a makefile. 
+    7) A ‘tarball’ of this directory will be turned into blackboard.  Please remove the data file prior to making the tar file.  The name of the tarball needs to be “hw04_firstName_LastName.tar”.  To create a tarball, “tar cf hw04_firstName_lastName.tar hw04_firstName_LastName “.  As always, much assistance is found with the ‘man tar’ command from any unix system.
+    8) The code must compile with -Wall
+    9) There must be a ‘clean’, and an ‘all’ target in the makefile.  The default target of the makefile will be identical to ‘all’.  Making a simple makefile will be discussed in class.
+    10) Data should not be duplicated, always refer to the words read in from the file with pointers.  There can only be one copy of the original string read into memory in the program.  (if you take each word and sort its characters, this would not be considered a duplicate)
+    11) You must call ‘free()’ on all dynamically allocated memory prior to exiting the program.   
+    12) Use ‘selection sort’ if you need to sort anything (hint: you will).  See page 246 in the textbook. Other sorts will be graded harshly.  (Note:  if desired, you can maintain the arrays in sorted order as they are read in from the data file.  Sometimes this can be a ‘cleaner’ solution, but it can also make your code hard to debug).
+    13) Indentation, commenting, and simplicity of the code will be considered during grading.
+
+You have a lot of implementation flexibility, but arrays need to be used for the data structures.  The arrays can be pre-defined using the provided max size, or you can use ‘realloc()’ to allocate memory when needed.  Note that realloc() can be a very slow function.
+
+Feel free to use array or pointer notation when accessing the data.
+
+As always, make some test files that allow you to ensure your program works for different kinds of input.   Here are some suggestions:
+    • an empty file (consisting of only a -1)
+    • a file containing 2 words that are anagrams
+    • a file containing 2 words that are not anagrams
+    • a file containing 4 words, two of which are anagrams and two that are not.
+
+
