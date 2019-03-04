@@ -1,0 +1,31 @@
+Macro: read input, do stuff with input. If input is -1, exit the program.
+
+determine all of the anagrams in the file
+
+output list of anagrams and number of anagrams found
+
+each group of anagrams on a single line
+
+Use bash file indirection to access the data file in your program.
+
+max size of arrays used will be 400,000
+
+3)  “ulimit -s “ is the bash command to see or change your stack limit.  Depending on where your large arrays are defined, this may need to be changed.
+
+4)  No word is greater than 1024 characters.  
+
+6)  Create a directory named “hw04_firstName_lastName”  (with your name in place of firstName and lastName).  Inside this directory will be your source code, the data file, and a makefile. 
+
+7)  A ‘tarball’ of this directory will be turned into blackboard.  Please remove the data file prior to making the tar file.  The name of the tarball needs to be “hw04_firstName_LastName.tar”.  To create a tarball, “tar cf hw04_firstName_lastName.tar hw04_firstName_LastName “.  As always, much assistance is found with the ‘man tar’ command from any unix system.
+
+8)  The code must compile with -Wall
+
+9)  There must be a ‘clean’, and an ‘all’ target in the makefile.  The default target of the makefile will be identical to ‘all’.  Making a simple makefile will be discussed in class.
+
+10) Data should not be duplicated, always refer to the words read in from the file with pointers.  There can only be one copy of the original string read into memory in the program.  (if you take each word and sort its characters, this would not be considered a duplicate)
+
+11) You must call ‘free()’ on all dynamically allocated memory prior to exiting the program.  
+
+12) Use ‘selection sort’ if you need to sort anything (hint: you will).  See page 246 in the textbook. Other sorts will be graded harshly.  (Note:  if desired, you can maintain the arrays in sorted order as they are read in from the data file.  Sometimes this can be a ‘cleaner’ solution, but it can also make your code hard to debug).
+
+malloc?
