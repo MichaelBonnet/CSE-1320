@@ -1,6 +1,7 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 #define MAX_WORDS 400000
 #define MAX_CHARACTERS 1024
 
@@ -19,95 +20,96 @@ char** memory_allocation(void)
     return input_words; // returns pointer to shiny new array of arrays
 }
 
-
-// Sort an array of Strings into alphabetical order
-void string_selection_sort(char array[])
+// adds the int values of each char in a string to get a "string value"
+int string_value( char array[] )
 {
-    // Find the string reference that should go in each index of
-    // the array, from index 0 to the end
-    for (int j = 0; j < MAX_WORDS-1; j++)
-    {
-        // Find min: the index of the string reference that should go into cell j.
-        // Look through the unsorted strings (those at j or higher) for the one that is first in lexicographic order
-        int min = j;
-        for (int k = j + 1; k < MAX_WORDS; k++)
-        {
-            if (array[k] < array[min]) // array[min] is the current min value
-            {
-                min = k; // shifts value of index min down by 1 index
-            }
-            // swap value at index j with value at index min
-            char temp = array[j];
-            array[j] = array[min];
-            array[min] = temp;
-        }
-    }
+	int string_value = 0;
+
+	for (int i = 0; i < strlen(array); i++)
+	{
+		if (array[i] != '\0')
+		{
+			string_value += (int)array[i];
+		}
+	}
+	return string_value;
 }
 
-// Sort an array of characters (a string) into alphabetical order
-void character_selection_sort(char array[])
+// finds the index of the larger string value between the first and next
+int LocationOfLargest( char* array[], int n )
 {
-    // Find the character reference that should go in each index of
-    // the array, from index 0 to the end
-    for(int i = 0; i < MAX_CHARACTERS-1; i++)
-    {
-        // Find min: the index of the character reference that should go into index i.
-        // Look through the unsorted strings (those at i or higher) for the one that is first in lexicographic order
-        int min = i;
-        for(int j = i + 1; j < MAX_CHARACTERS; j++)
-        {
-            if(array[j]<array[min]) // array[min] is the current min value
-            {
-                min = j; // shifts value of index min down by 1 index
-            }
-            // swap value at index i with value at index min
-            char temp = array[i];
-            array[i] = array[min];
-            array[min] = temp;
-        }
-    }
+	int index = 0;
+
+	for (int i = 0; i <= n; i++)
+	{
+		if ( string_value(array[index]) < string_value(array[i]) )
+		{
+			index = i;
+		}
+	}
+	return index;
 }
 
+// swaps the values of two strings within an array of strings
+void swap( char **a, char **b )
+{
+	char* tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
-// Main function that executes all other functions to get desired output
+// selection sorts an array of strings by string value
+void SelectionSort( char* array[], int size )
+{
+	int index, last = size-1;
+
+	while (last > 0)
+	{
+		index = LocationOfLargest( array, last );
+		swap( &array[last], &array[index] );
+		last--;
+	}
+}
+
+// main function
 int main(void)
 {
-    char input[MAX_CHARACTERS];
+	int anagram_count = 0; // tracks how many anagrams have been found
+	char input[MAX_CHARACTERS]; // holds input from stdin
+	const char *terminate = "-1"; // if this string is entered, the loop that gets input should terminate
 
-    // calls memory allocation function that returns a pointer to
-    // the nice shiny array of arrays, and stores it.
-    char **input_words = memory_allocation();
+	char **input_words = memory_allocation(); // calls memory_allocation and stores the returned pointer in input_words
 
-    // continually asks for input until exit command is received,
-    // storing input in successive indexes of input_words
-    int i = 0; // counting variable
-    do
+	int k = 0; // counting variable
+    do // loop gets input from stdin until "-1" is entered
     {
-        scanf("%s", input);
-        if (*input == -1)
+        fgets(input, MAX_CHARACTERS, stdin);
+        if ( (strcmp(input, terminate) == 0) ) // exits loop if input is equal to "-1"
         {
             break;
         }
         else
         {
-                strncpy(input_words[i], input, MAX_CHARACTERS);
-                i++;
+                strcpy(input_words[k], input); // copies string input to appropriate index in input_wods
+                k++;
         }
-    } while (i < MAX_WORDS-1);
+	} while ( (strcmp(input, terminate) != 0) ); // only continues if input != "-1"
 
-    // Sorts strings in input_words alphabetically
-    string_selection_sort(input_words[]);
+	SelectionSort( input_words, MAX_WORDS ); // selection sorts all strings in input_words
 
-    // Sorts characters in each string alphabetically
-    for (int j = 0; j < MAX_WORDS; j++)
-    {
-        character_selection_sort(input_words[j]);
-    }
-
-    for (int l = 0; l < MAX_WORDS; l++)
-    {
-        printf("%s\n", *input_words);
-    } 
-
-    return 0; // Return statement
+	// the following loop sees if the string values of any of the words in input_words are equal,
+	// and if so, prints them and increments anagram_count;
+	for (int i = 0; i < ( sizeof(input_words) / sizeof(input_words[0]) ); i++)
+	{
+		for (int j = 0; j < ( sizeof(input_words) / sizeof(input_words[0]) ); j++)
+		{
+			if ( (string_value(input_words[i]) == string_value(input_words[j])) && (i != j) )
+			{
+				printf("%s %s\n", input_words[i], input_words[j]);
+				anagram_count++; // increments anagram_count if an anagram is found
+			}
+		}
+	}
+	printf("%d\n", anagram_count); // prints anagram_count after comparisons are complete.
+	return 0; // return statement
 }
