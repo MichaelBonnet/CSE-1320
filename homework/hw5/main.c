@@ -1,12 +1,18 @@
-// Header Inclusions
-#include <stdio.h>
-#include <stdlib.h>
-#include "cards.h"
-#include "bjack.h"
+/* Name of Last Editor : Michael Bonnet
+ * Date of Last Edit   : 03/29/2019 (DD/MM/YYY)
+ * Time of Last Edit   : 11:49 CDT (GMT-6)
+ */
 
-// Macro Definitions
-#define NUM_DECKS (2)
-#define CARDS_IN_DECK (52)
+/*=== Header Inclusions ===*/
+#include <stdio.h>  // Standard I/O
+#include <stdlib.h> // Standard Library
+#include "cards.h"  // Header for cards.c
+#include "bjack.h"  // Headef for bjack.c
+
+/*=== Macro/Constant Definitions ===*/
+// Number of decks and number of cards in decks
+#define NUM_DECKS (2)      // number of decks to be made for the game
+#define CARDS_IN_DECK (52) // number of cards in a standard deck (sans jokers)
 
 /*
  * Assignment 5 is to implement some of the low level functions
@@ -37,47 +43,57 @@
  *
  */
 
-int main( int argc, char* argv[] )
+/*=== Main Function ===*/
+
+int main( int argc, char const *argv[] )
 { // BEGIN FUNCTION main
-   // this main program will test some of the functions
+    // this main program will test some of the functions
 
-   char deck[CARDS_IN_DECK*NUM_DECKS];
+    char deck[CARDS_IN_DECK*NUM_DECKS];
 
-   init( deck, CARDS_IN_DECK );               // creates a deck of cards
-   init( deck+CARDS_IN_DECK, CARDS_IN_DECK ); // creates another deck of cards
+    init( deck, CARDS_IN_DECK );  // creates a deck of cards
+    init( &deck[CARDS_IN_DECK] ); // creates another deck of cards
 
-   shuffle( deck, CARDS_IN_DECK*NUM_DECKS );  // shuffles the deck of cards
+    shuffle( deck, CARDS_IN_DECK*NUM_DECKS );  // shuffles the deck of cards
 
-   if ( !verify( deck, NUM_DECKS, CARDS_IN_DECK*NUM_DECKS) )
-   {
-      printf("the deck is not correct\n");
-   }
-   else
-   {
-      printf("the deck is OK\n");
-   }
+    // Checks if a deck was properly created
+    if ( !verify( deck, NUM_DECKS, CARDS_IN_DECK*NUM_DECKS) )
+    { // BEGIN IF 1, CONDITION TRUE
+        printf("the deck is not correct\n");
+    } // END IF 1, CONDITION TRUE
+    else
+    { // BEGIN IF 1, CONDITION FALSE
+        printf("the deck is OK\n");
+    } // END IF 1, CONDITION FALSE
 
-   char hand1[2]={0};
-   hand1[0] = ACE | DIAMONDS;
-   hand1[1] = THREE |SPADES;
-   int* value;
-   int* n_values;
-   value = (int*) malloc (sizeof(int)*10); // should be big enough
-   n_values = (int*) malloc (sizeof(int));
-   calculate_hand_value (hand1,2,value,n_values);
-   for (int i=0;i< *n_values;i++)
-   {
-     print_card (hand1[i]);
-     printf (" %d %d\n",i,*(value+i));
-   }
+    char hand1[2]={0}; // char array holds two chars that represent cards, each val set to 0
 
-   free (value);
-   free (n_values);
+    hand1[0] = ACE | DIAMONDS; // first card is an ace of diamonds
+    hand1[1] = THREE |SPADES;  // second card is a three of spades
 
-   // put in code here to test player_move
+    int* value;    // will hold the total value of hand
+    int* n_values; // will hold the number of possible values of hand
 
-   // put in code here to test deal()
+    value = (int*) malloc (sizeof(int)*10); // malloc for the total value of hand
+    n_values = (int*) malloc (sizeof(int)); // malloc for the # of possible values of hand
 
- 
-   return 0;
+    calculate_hand_value (hand1,2,value,n_values); // calculates value of hand
+
+    // Iterates through the possible values of a hand
+    for (int i=0;i< *n_values;i++)
+    { // BEGIN FOR LOOP 0
+        print_card (hand1[i]);            // Prints the name of a card
+        printf (" %d %d\n",i,*(value+i)); // Prints the potential value of a card
+    } // END FOR LOOP 0
+
+    free (value);    // Frees the memory allocated to value
+    free (n_values); // Frees the memory allocated to n_values
+
+    // put in code here to test player_move
+
+    // put in code here to test deal()
+
+
+    return 0; // Return statement
 } // END FUNCTION main
+

@@ -1,19 +1,36 @@
-#include <stdio.h>
-#include <assert.h>
+/* Name of Last Editor : Michael Bonnet
+ * Date of Last Edit   : 03/29/2019 (DD/MM/YYY)
+ * Time of Last Edit   : 11:49 CDT (GMT-6)
+ */
 
-#include "cards.h"
+/*=== Header Inclusions ===*/
+#include <stdio.h>  // Standard I/O
+#include <assert.h> // Asserts
+#include "cards.h"  // Header for this file
+
+/*=== Function Definitions ===*/
 
 // prints a card's value and suite
-void print_card( char card )
+void print_card( char card ) // DONE-ISH
 { // BEGIN FUNCTION print_card
-	/* this function prints out 
-	 * a card to stdout.  without a newline.
+	/* this function prints out a card to stout
+	 * without a newline.
 	 * examples
 	 *       10 Diamonds
 	 *       Ace Spades
 	 *       4 Clubs
 	 */
+	
+	char** value_arr[13] = { "Ace","1","2","3","4","5","6","7","8","9","10",
+							 "Jack","Queen","King" };
+	char suite_arr[4] = { CLUBS, HEARTS, DIAMONDS, SPADES };
+
+	int card_value = card & VALUE_MASK;
+	int card_suite = card & SUITE_MASK;
+
+	printf("%s %s", value_arr[card_value], suite_arr[card_suite]);
 } // END FUNCTION print_card
+
 
 // finds the value of a card
 int card_value( char card ) // DONE-ISH
@@ -26,9 +43,8 @@ int card_value( char card ) // DONE-ISH
 	 * if the card is an ace, it returns a 1.
 	 *
 	 */
-	int card_value = card & VALUE_MASK;
 
-	return card_value;
+	return card & VALUE_MASK;
 } // END FUNCTION card_value
 
 
@@ -40,14 +56,20 @@ int is_ace( char card ) // DONE-ISH
 	 * in all other situations, it returns a 0.
 	 *
 	 */
-	if ( (card & VALUE_MASK) == 1 ) { return 1; }
 
-	return 0;
+	if ( (card & VALUE_MASK) == ACE )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 } // END FUNCTION is_ace
 
 
 // Checks if the card entered has been dealt
-int is_dealt( char card ) // DONE-ISH
+int is_dealt( char card ) // wack
 { // BEGIN FUNCTION is_dealt
 	/* 
 	 * this function returns a 1 if the card has been 
@@ -55,7 +77,12 @@ int is_dealt( char card ) // DONE-ISH
 	 *
 	 */
 
-	if ( (card & DEALT) != 0 ) { return 1; }
-
-   return 0;
+	if ( (card & DEALT) != 0 ) // need to work on the condition
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 } // END FUNCTION is_dealt

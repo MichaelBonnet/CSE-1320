@@ -1,10 +1,17 @@
-// Header Inclusions
-#include <assert.h> // From standard C headers
-#include "player.h" // Headers for the functions below
+/* Name of Last Editor : Michael Bonnet
+ * Date of Last Edit   : 03/29/2019 (DD/MM/YYY)
+ * Time of Last Edit   : 11:49 CDT (GMT-6)
+ */
 
+/*=== Header Inclusions ===*/
+#include <assert.h> // Asserts
+#include "player.h" // Header for this file
+#include "cards.h"  // Header for cards.c
+
+/*=== Function Definitions ===*/
 
 // Prompts for and receives what the player intends to do
-void player_move(int *hit, int* pass, int* _double, int* split)
+void player_move(int *hit, int* pass, int* _double, int* split) // DONE-ISH
 { // BEGIN FUNCTION player_move
 	assert (hit);      // Makes sure hit is not NULL
 	assert (pass);     // Makes sure pass is not NULL
@@ -23,12 +30,12 @@ void player_move(int *hit, int* pass, int* _double, int* split)
 	 * only one of hit, pass, _double, or split is set.
 	 */
 
-	char *input; // temporarily holds player input string
-
-	// Prompt and input
+	// Prompts for and reads input
+	char *input;
 	printf("What would you like to do?\n");
 	scanf("%s", input);
 
+	// Loops through all tokens in the input string to see what the player wants to do
 	for (char *token = strtok(input, " "); token != NULL; token = strtok(NULL, " "))
 	{ // BEGIN FOR LOOP 0
 		if ( strcmp( token, "hit" )    == 0) { *hit     = 1 }; break; // Set *hit     = true
@@ -40,7 +47,7 @@ void player_move(int *hit, int* pass, int* _double, int* split)
 
 
 // prompts for and receives the player's bet, returning that bet as an int
-int player_bet()
+int player_bet() // DONE-ISH
 { // BEGIN FUNCTION player_bet
 	int bet;            // 
 	scanf("%d", &bet);

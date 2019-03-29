@@ -1,13 +1,21 @@
-#include <assert.h>
-// Header inclusions
-#include "bjack.h"  // Headers for this file
-#include "cards.h"  // Headers from cards
+/* Name of Last Editor : Michael Bonnet
+ * Date of Last Edit   : 03/29/2019 (DD/MM/YYY)
+ * Time of Last Edit   : 11:49 CDT (GMT-6)
+ */
+
+/*=== Header Inclusions ===*/
+#include <assert.h> // Asserts
+#include "bjack.h"  // Header for this file
+#include "cards.h"  // Header for cards.c
+#include "player.h" // Header for player.c
+
+/*=== Function Definitions ===*/
 
 // Creates a deck(s) of card
 void init( char *deck, int CARDS_IN_DECK ) // DONE-ISH
 { // BEGIN FUCNTION init
-   assert(CARDS_IN_DECK==52); // CARDS_IN_DECK must = 52
-   assert(deck);              // Make sure deck is not NULL
+    assert(CARDS_IN_DECK==52); // CARDS_IN_DECK must = 52
+    assert(deck);              // Make sure deck is not NULL
 
     /*
      * this function will initialize a deck of cards
@@ -18,13 +26,17 @@ void init( char *deck, int CARDS_IN_DECK ) // DONE-ISH
      *
      */
 
-    for (int i = 1; i < 14; i++)
+    char suite_arr[4] = { CLUBS, HEARTS, DIAMONDS, SPADES };
+    int idx = 0;
+    for ( int i = 0; i <= 4; i++ )
     { // BEGIN FOR LOOP 0
-        for (int j = 0; j < 40; j + 10)
+        for ( int j = 1; j <= 13; j++ )
         { // BEGIN FOR LOOP 1
-            deck[i - 1 + j] = i + j;
+            deck[idx] = j | suite_arr[i]; // sets next card to the next value in order
+            idx++;
         } // END FOR LOOP 1
     } // END FOR LOOP 0
+
 } // END FUNCTION init
 
 
@@ -36,16 +48,16 @@ void shuffle( char *deck, int CARDS ) // DONE-ISH
     /*
      * this function will shuffle a deck (or several) of cards.
      * one way to do this:
-     *              process each card in a for i loop
-     *                  use random() to generate a number between 0 and CARDS
-     *                  swap the card from deck[i] to deck[random number between 0 and CARDS]
+     *     process each card in a for i loop
+     *         use random() to generate a number between 0 and CARDS
+     *         swap the card from deck[i] to deck[random number between 0 and CARDS]
      *              
      */
 
     int rand_idx;          // will hold a random number between 0 and RAND_MAX
     char temp;             // temp variable for swapping
 
-    for (int i; i < CARDS; i++) // This is pretty much just a swap function
+    for ( int i; i < CARDS; i++ ) // This is pretty much just a swap function
     { // BEGIN FOR LOOP 0
         rand_idx = rand() % (CARDS + 1); // random integer in range [0, CARDS]
         temp           = deck[i];
@@ -77,11 +89,11 @@ int verify( char *deck, int NUM_DECKS, int CARDS ) // DONE-ISH
 
     int deck_count[52];
 
-    for (int j = 0; j < NUM_DECKS; j++)
+    for ( int i = 0; i < NUM_DECKS; i++ )
     { // BEGIN FOR LOOP 0
-        for (int i = 0; i < 52; i++)
+        for ( int j = 0; j < 52; j++ )
         { // BEGIN FOR LOOP 1
-            deck[51 + ( i * j )] = deck[i];
+            //***************************STUFF
         } // END FOR LOOP 1
     } // END FOR LOOP 0
 
@@ -145,14 +157,47 @@ void calculate_hand_value( char* cards, int N, int* value, int* N_VALUES ) // DO
      * there are some functions in cards.h that will help you here.
      */
 
-    int n_vals = 0; // variable to increment as more values are calculated
-    for (int i = 0; i < N; N++)
+
+    // Determining if there is an ace in the passed in hand
+    int ace_present;
+    for ( int i = 0; i < N; i++ )
     { // BEGIN FOR LOOP 0
-        value[i] = cards[i] & VALUE_MASK;
-        n_vals++;
+        if ( (cards[i] & VALUE_MASK) == ACE )
+        { // BEGIN IF 0, CONDITION TRUE
+            ace_present = 1; // there is an ace in the hand
+        } // END IF 0, CONDITION TRUE
+        else
+        { // BEGIN IF 0, CONDITION FALSE
+            ace_present = 0; // there is not an ace in the hand
+        } // END IF 0, CONDITION TRUE
     } // END FOR LOOP 0
 
-    *N_VALUES = n_vals; // number of values
+
+    // Value calculation is there is an ace
+    if ( ace_present == 1 )
+    { // BEGIN IF 0, CONDITION TRUE
+        N_VALUES = 2; // Sets number of possible values given the presence of an ace
+        if ( N == 1 )
+        { // BEGIN IF 1.0, CONDITION TRUE
+            value[0] = ( cards[0] & VALUE_MASK ) + 10;
+        } // END IF 1.0, CONDITION TURE
+        if ( N == 2 )
+        { // BEGIN IF 1.1, CONDITION TRUE
+            value[0] = ( cards[0] & VALUE_MASK ) + ( cards[1] & VALUE_MASK );
+            value[1] = ( cards[0] & VALUE_MASK ) + ( cards[1] & VALUE_MASK ) + 10;
+        } // END IF 1.1, CONDITION TRUE
+    } // END IF 0, CONDITION TRUE
+
+
+    // Value calculation if there is no ace
+    if ( ace_present == 0 )
+    { // BEGIN IF 0, CONDITION TRUE
+        N_VALUES = 1; // Sets number of possible values given the presence of an ace
+        for (int i = 0; i < N; i++)
+        { // BEGIN FOR LOOP 0
+            value[0] += ( cards[i] & VALUE_MASK );
+        } // END FOR LOOP 0
+    } // END IF 0, CONDITION TURE
 
     // test values
     // *value=21;
