@@ -1,10 +1,10 @@
+// Header Inclusions
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "cards.h"
 #include "bjack.h"
 
-
+// Macro Definitions
 #define NUM_DECKS (2)
 #define CARDS_IN_DECK (52)
 
@@ -37,8 +37,8 @@
  *
  */
 
-int main(int argc,char* argv[])
-{
+int main( int argc, char* argv[] )
+{ // BEGIN FUNCTION main
    // this main program will test some of the functions
 
    char deck[CARDS_IN_DECK*NUM_DECKS];
@@ -80,4 +80,4 @@ int main(int argc,char* argv[])
 
  
    return 0;
-}
+} // END FUNCTION main

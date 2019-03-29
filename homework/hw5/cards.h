@@ -1,3 +1,6 @@
+#ifndef CARDS_H
+#define CARDS_H
+
 /* To represent a playing card, use
  * an 8 bit variable, like a 'char'  // I used int instead
  *
@@ -8,7 +11,7 @@
  * bits
  */
 
-
+// Bitmasks
 #define VALUE_MASK 0x0F // card & VALUE_MASK = value of a card
 #define SUITE_MASK 0x40 // card & SUITE_MASK = suite of a card
 
@@ -33,6 +36,7 @@
 #define DIAMONDS 0x20
 #define SPADES   0x30
 
+// Sets whether a card has been dealt
 #define DEALT 0x80
 
 /* 
@@ -40,8 +44,45 @@
  * the higest value card representation = KING of SPADES = 0x3d.
  */
 
-void print_card ( int card);
-int card_value ( int card );
-int is_ace ( int card );
 
-int is_dealt ( int card );
+/*=============================*/
+/*=== Function Declarations ===*/
+/*=============================*/
+
+// prints a card's value and suite
+void print_card( int card);
+// {
+//  	PRECONDITIONS  : none
+//  	POSTCONDITIONS : none
+//  	RETURN         : none
+// }
+
+
+// finds the value of a card
+int card_value( int card );
+// {
+//  	PRECONDITIONS  : none
+//  	POSTCONDITIONS : none
+//  	RETURN         : value of card
+// }
+
+
+// checks if card is an ace
+int is_ace( int card );
+// {
+//  	PRECONDITIONS  : none
+//  	POSTCONDITIONS : none
+//  	RETURN         : 1 is card is an ace, 0 if not
+// }
+
+
+// Checks if the card entered has been dealt
+int is_dealt( int card );
+// {
+//  	PRECONDITIONS  : none
+//  	POSTCONDITIONS : none
+//  	RETURN         : 1 if card has been dealt, 0 if not
+// }
+
+
+#endif
