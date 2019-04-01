@@ -69,7 +69,7 @@ int is_ace( char card ) // DONE-ISH
 
 
 // Checks if the card entered has been dealt
-int is_dealt( char card ) // wack
+int is_dealt( char card ) // DONE-ISH
 { // BEGIN FUNCTION is_dealt
 	/* 
 	 * this function returns a 1 if the card has been 
@@ -77,12 +77,12 @@ int is_dealt( char card ) // wack
 	 *
 	 */
 
-	if ( (card & DEALT) != 0 ) // need to work on the condition
+	if ( (card & DEALT) == DEALT ) // need to work on the condition
 	{
-		return 1;
+		return 1; // Returns 1 if the card has been dealt
 	}
 	else
 	{
-		return 0;
+		return 0; // Returns 0 if the card has not been dealt
 	}
 } // END FUNCTION is_dealt

@@ -7,7 +7,8 @@
 #include <stdio.h>  // Standard I/O
 #include <stdlib.h> // Standard Library
 #include "cards.h"  // Header for cards.c
-#include "bjack.h"  // Headef for bjack.c
+#include "bjack.h"  // Header for bjack.c
+#include "player.h" // Header for player.c
 
 /*=== Macro/Constant Definitions ===*/
 // Number of decks and number of cards in decks
@@ -52,7 +53,7 @@ int main( int argc, char const *argv[] )
     char deck[CARDS_IN_DECK*NUM_DECKS];
 
     init( deck, CARDS_IN_DECK );  // creates a deck of cards
-    init( &deck[CARDS_IN_DECK] ); // creates another deck of cards
+    init( &deck[CARDS_IN_DECK], CARDS_IN_DECK ); // creates another deck of cards
 
     shuffle( deck, CARDS_IN_DECK*NUM_DECKS );  // shuffles the deck of cards
 
@@ -91,7 +92,25 @@ int main( int argc, char const *argv[] )
 
     // put in code here to test player_move
 
+    int* hit     = (int*) malloc (sizeof(int));
+    int* pass    = (int*) malloc (sizeof(int));
+    int* _double = (int*) malloc (sizeof(int));
+    int* split   = (int*) malloc (sizeof(int));
+    *hit        = 0;
+    *pass       = 0;
+    *_double    = 0;
+    *split      = 0;
+
+    player_move( hit, pass, _double, split );
+
     // put in code here to test deal()
+
+    // char player1_hand[3] = {0};
+
+    // player1_hand[0] = (TEN | DIAMONDS) | DEALT;
+    // player1_hand[1] = (FIVE | SPADES)  | DEALT;
+
+    int size = deal( deck, deck[0] );
 
 
     return 0; // Return statement

@@ -22,7 +22,7 @@
 
 // Bitmasks
 #define VALUE_MASK 0x0F // card & VALUE_MASK = value of a card
-#define SUITE_MASK 0x40 // card & SUITE_MASK = suite of a card
+#define SUITE_MASK 0x30 // card & SUITE_MASK = suite of a card
 
 // Card Values
 #define ACE   0x01 // Value of a(n) ace   is 1  {Rightmost 4 Bits}

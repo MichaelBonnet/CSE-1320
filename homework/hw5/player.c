@@ -5,6 +5,9 @@
 
 /*=== Header Inclusions ===*/
 #include <assert.h> // Asserts
+#include <stdio.h>  // Standard I/O
+#include <string.h> // String functions
+#include <stdlib.h> // Standard Library
 #include "player.h" // Header for this file
 #include "cards.h"  // Header for cards.c
 
@@ -31,17 +34,17 @@ void player_move(int *hit, int* pass, int* _double, int* split) // DONE-ISH
 	 */
 
 	// Prompts for and reads input
-	char *input;
+	char input[1024];
 	printf("What would you like to do?\n");
 	scanf("%s", input);
 
 	// Loops through all tokens in the input string to see what the player wants to do
 	for (char *token = strtok(input, " "); token != NULL; token = strtok(NULL, " "))
 	{ // BEGIN FOR LOOP 0
-		if ( strcmp( token, "hit" )    == 0) { *hit     = 1 }; break; // Set *hit     = true
-		if ( strcmp( token, "pass" )   == 0) { *pass    = 1 }; break; // Set *pass    = true
-		if ( strcmp( token, "double" ) == 0) { *_double = 1 }; break; // Set *_double = true
-		if ( strcmp( token, "split" )  == 0) { *split   = 1 }; break; // Set *split   = true
+		if ( strcmp( token, "hit" )    == 0) { *hit     = 1; }; break; // Set *hit     = true
+		if ( strcmp( token, "pass" )   == 0) { *pass    = 1; }; break; // Set *pass    = true
+		if ( strcmp( token, "double" ) == 0) { *_double = 1; }; break; // Set *_double = true
+		if ( strcmp( token, "split" )  == 0) { *split   = 1; }; break; // Set *split   = true
 	} // END FOR LOOP 0
 } // END FUNCTION player_move
 

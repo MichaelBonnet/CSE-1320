@@ -16,7 +16,12 @@
 /*=== Function Declarations ===*/
 /*=============================*/
 
-// stuff
+// void deal(char* deck, char* hand, int decksize, int handsize);
+// // {
+// //  	PRECONDITIONS  : pointers passed in are not NULL
+// //  	POSTCONDITIONS : deck is smaller, hand is larger
+// //  	RETURN         : none
+// // }
 
 #endif
 

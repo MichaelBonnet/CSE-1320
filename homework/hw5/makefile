@@ -11,19 +11,19 @@ hw5: main.o cards.o dealer.o player.o bjack.o
 	${CC} ${CFLAGS} -o hw5 main.o cards.o dealer.o player.o bjack.o
 
 main.o: main.c cards.h bjack.h
-	${CC} ${CFLAGS}
+	${CC} ${CFLAGS} -c main.c
 
 cards.o:cards.c cards.h
-	${CC} ${CFLAGS} -c cards.o
+	${CC} ${CFLAGS} -c cards.c
 
 dealer.o:dealer.c dealer.h cards.h
-	${CC} ${CFLAGS} -c dealer.o
+	${CC} ${CFLAGS} -c dealer.c
 
 player.o:player.c cards.h
-	${CC} ${CFLAGS} -c player.o
+	${CC} ${CFLAGS} -c player.c
 
 bjack.o:bjack.c player.h dealer.h cards.h
-	${CC} ${CFLAGS} -c bjack.o
+	${CC} ${CFLAGS} -c bjack.c
 
 clean: 
 	rm -rf hw5 main.o cards.o dealer.o player.o main.o bjack.o
