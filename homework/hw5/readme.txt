@@ -1,7 +1,7 @@
 main.c:
 
-cards.c:
-cards.h: done
+cards.c: totally done
+cards.h: totally done
 
 bjack.c: done*
 bjack.h: done*

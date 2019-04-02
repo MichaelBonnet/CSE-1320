@@ -6,6 +6,7 @@
 /*=== Header Inclusions ===*/
 #include <assert.h> // Asserts
 #include <stdlib.h> // Standard Library
+#include <string.h> // String library
 #include "bjack.h"  // Header for this file
 #include "cards.h"  // Header for cards.c
 #include "player.h" // Header for player.c
@@ -89,44 +90,29 @@ int verify( char *deck, int NUM_DECKS, int CARDS ) // DONE-ISH
      * 0
      *
      */
+    int status = 1;
     
-    int suite_count[4]  = {0};
-    int value_count[13] = {0};
-
-    char suite_temp;
-    char value_temp;
-
-    for ( int i = 0; i < CARDS; i++ )
-    { // BEGIN FOR LOOP 0
-        suite_temp = deck[i] & SUITE_MASK;
-        value_temp = deck[i] & VALUE_MASK;
-
-        suite_count[ (suite_temp / 16) - 1 ]++;
-        value_count[ value_temp - 1 ]++;
-    } // END FOR LOOP 0
-
-    for ( int j = 0; j < 4; j++ )
+    int sum[255] = {0};
+    for (int i = 0; i < CARDS; i++)
     {
-        if ( suite_count[j] != (13 * NUM_DECKS) )
-        {
-            return 0;
-        }
+    	sum[card[i]]++;
     }
 
-    for ( int k = 0; k < 13; k++ )
+    for (int i = 0; i < 255; i++)
     {
-        if ( value_count[k] != (4 * NUM_DECKS) )
-        {
-            return 0;
-        }
+    	if ( sum[i] != (CARDS / 52) || sum[i] != 0 )
+    	{
+    		printf("BAD");
+    		status = 0;
+    	}
     }
 
-    return 1;
+    return status;
 } // END FUNCTION verify
 
 
 // deals cards, tracks deck size, and marks a card as dealt
-int deal( char* deck, char* card ) // DONE-ISH
+int deal( char *deck, char *card ) // DONE-ISH
 { // BEGIN FUNCTION deal
     assert(deck);
     assert(card);
@@ -138,19 +124,32 @@ int deal( char* deck, char* card ) // DONE-ISH
      *
      *    (note) use a bit in the card to signify a card has been dealt,
      *    see cards.h
-     */     
+     */   
 
-    int decksize = sizeof(deck) / sizeof(deck[0]);
-    decksize -= 1;
+    int idx = 0;
+    while ( deck[idx] & DEALT )
+    {
+    	i++;
+    }
+    *card   = deck[idx];
+    deck[idx] = deck[idx] | DEALT;
 
-    *card = *card | DEALT;
+    int count = 0;
+    for (int j = 0; j < 104; j++)
+    {
+    	// count how many are not dealt and return that count
+    	if ( is_dealt(deck[j]) == 0 )
+    	{
+    		count++;
+    	}
+    }
 
-    return decksize;
+    return count;
 } // END FUNCTION deal
 
 
 // calculates different values for a hand of cards
-void calculate_hand_value( char* cards, int N, int* value, int* N_VALUES ) // DONE-ISH
+void calculate_hand_value( char *cards, int N, int *value, int *N_VALUES ) // DONE-ISH
 { // BEGIN FUNCTION calculate_hand_value
     assert(N>0);       // make sure N is greater than 0
     assert(cards);     // make sure cards is not NULL
@@ -183,16 +182,12 @@ void calculate_hand_value( char* cards, int N, int* value, int* N_VALUES ) // DO
 
 
     // Determining if there is an ace in the passed in hand
-    int ace_present;
+    int ace_present = 0;
     for ( int i = 0; i < N; i++ )
     { // BEGIN FOR LOOP 0
-        if ( (cards[i] & VALUE_MASK) == ACE )
+        if ( is_ace( cards[i] ) == 1 )
         { // BEGIN IF 0, CONDITION TRUE
             ace_present = 1; // there is an ace in the hand
-        } // END IF 0, CONDITION TRUE
-        else
-        { // BEGIN IF 0, CONDITION FALSE
-            ace_present = 0; // there is not an ace in the hand
         } // END IF 0, CONDITION TRUE
     } // END FOR LOOP 0
 

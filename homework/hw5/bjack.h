@@ -11,7 +11,7 @@
 /*=============================*/
 
 // Creates a deck(s) of card
-void init( char *deck,int CARDS_IN_DECK );
+void init( char *deck, int CARDS_IN_DECK );
 // {
 //  	PRECONDITIONS  : pointers passed in are not NULL
 //                       CARDS_IN_DECK is equal to 52
@@ -43,13 +43,13 @@ int verify( char *deck, int NUM_DECKS, int CARDS );
 int deal( char *deck, char *card );
 // {
 //  	PRECONDITIONS  : pointers passed in are not NULL
-//  	POSTCONDITIONS : card marked as dealt
-//  	RETURN         : number of cards left in deck
+//  	POSTCONDITIONS : a card marked as dealt in the deck and the dealt card is in the hand
+//  	RETURN         : number of undealt cards left in deck
 // }
 
 
 // calculates different values for a hand of cards
-void calculate_hand_value( char* cards, int N, int* value, int* N_VALUES ); 
+void calculate_hand_value( char *cards, int N, int *value, int *N_VALUES ); 
 // {
 //  	PRECONDITIONS  : *cards, *value, *N_VALUES are not NULL;
 //      				 N is greater than 0

@@ -11,7 +11,7 @@
 /*=============================*/
 
 // Prompts for and receives what the player intends to do
-void player_move(int *hit, int* pass, int* _double, int* split);
+void player_move(int *hit, int *pass, int *_double, int *split);
 // {
 //  	PRECONDITIONS  : pointers passed in are not NULL
 //  	POSTCONDITIONS : a move's value is set to 1 for TRUE

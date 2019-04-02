@@ -33,7 +33,7 @@ void print_card( char card ) // DONE-ISH
 
 
 // finds the value of a card
-int card_value( char card ) // DONE-ISH
+int card_value( char card )
 { // BEGIN FUNCTION card_value
 	/*
 	 * this function returns a numerical value of a card.
@@ -44,12 +44,14 @@ int card_value( char card ) // DONE-ISH
 	 *
 	 */
 
-	return card & VALUE_MASK;
+	int card_val = card & VALUE_MASK;
+
+	return card_val;
 } // END FUNCTION card_value
 
 
 // checks if card is an ace
-int is_ace( char card ) // DONE-ISH
+int is_ace( char card )
 { // BEGIN FUNCTION is_ace
 	/*
 	 * this function returns a 1 if the card is an ace.
@@ -57,19 +59,18 @@ int is_ace( char card ) // DONE-ISH
 	 *
 	 */
 
+	int _ace = 0
 	if ( (card & VALUE_MASK) == ACE )
 	{
-		return 1;
+		_ace = 1;
 	}
-	else
-	{
-		return 0;
-	}
+
+	return _ace;
 } // END FUNCTION is_ace
 
 
 // Checks if the card entered has been dealt
-int is_dealt( char card ) // DONE-ISH
+int is_dealt( char card )
 { // BEGIN FUNCTION is_dealt
 	/* 
 	 * this function returns a 1 if the card has been 
@@ -77,12 +78,11 @@ int is_dealt( char card ) // DONE-ISH
 	 *
 	 */
 
-	if ( (card & DEALT) == DEALT ) // need to work on the condition
+	int _dealt = 0;
+	if ( (card & DEALT) == DEALT )
 	{
-		return 1; // Returns 1 if the card has been dealt
+		_dealt = 1; // Returns 1 if the card has been dealt
 	}
-	else
-	{
-		return 0; // Returns 0 if the card has not been dealt
-	}
+
+	return _dealt;
 } // END FUNCTION is_dealt
