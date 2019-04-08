@@ -97,7 +97,7 @@ int main (void)
 	my_mean = mean(a0, a1, a2, a3, a4);
 
 	printf("%d %d %d %d %d", a0, a1, a2, a3, a4);
-	printf("min = %d max = %d median = %d sum = %d mean = %f", min, max, median, sum, mean);
+	printf("min = %d max = %d median = %d sum = %d mean = %f\n", min, max, median, sum, mean);
   
   return 0;
 
