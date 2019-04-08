@@ -52,7 +52,7 @@ void player_move(int *hit, int* pass, int* _double, int* split) // DONE-ISH
 // prompts for and receives the player's bet, returning that bet as an int
 int player_bet() // DONE-ISH
 { // BEGIN FUNCTION player_bet
-	int bet;            // 
-	scanf("%d", &bet);
+	int bet = 0;            // 
+	printf("Place your bet: ");
 	return bet;
 } // END FUNCTION player_bet

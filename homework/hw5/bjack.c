@@ -5,6 +5,7 @@
 
 /*=== Header Inclusions ===*/
 #include <assert.h> // Asserts
+#include <stdio.h>  // standard i/o
 #include <stdlib.h> // Standard Library
 #include <string.h> // String library
 #include "bjack.h"  // Header for this file
@@ -95,7 +96,7 @@ int verify( char *deck, int NUM_DECKS, int CARDS ) // DONE-ISH
     int sum[255] = {0};
     for (int i = 0; i < CARDS; i++)
     {
-    	sum[card[i]]++;
+    	sum[(int)deck[i]]++; // issues here?
     }
 
     for (int i = 0; i < 255; i++)
@@ -129,7 +130,7 @@ int deal( char *deck, char *card ) // DONE-ISH
     int idx = 0;
     while ( deck[idx] & DEALT )
     {
-    	i++;
+    	idx++;
     }
     *card   = deck[idx];
     deck[idx] = deck[idx] | DEALT;
@@ -138,7 +139,7 @@ int deal( char *deck, char *card ) // DONE-ISH
     for (int j = 0; j < 104; j++)
     {
     	// count how many are not dealt and return that count
-    	if ( is_dealt(deck[j]) == 0 )
+    	if ( is_dealt(deck[j]) != 1 )
     	{
     		count++;
     	}

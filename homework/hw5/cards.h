@@ -58,7 +58,7 @@
 /*=============================*/
 
 // prints a card's value and suite
-void print_card( int card);
+void print_card( char card);
 // {
 //  	PRECONDITIONS  : none
 //  	POSTCONDITIONS : none
@@ -67,7 +67,7 @@ void print_card( int card);
 
 
 // finds the value of a card
-int card_value( int card );
+int card_value( char card );
 // {
 //  	PRECONDITIONS  : none
 //  	POSTCONDITIONS : none
@@ -76,7 +76,7 @@ int card_value( int card );
 
 
 // checks if card is an ace
-int is_ace( int card );
+int is_ace( char card );
 // {
 //  	PRECONDITIONS  : none
 //  	POSTCONDITIONS : none
@@ -85,7 +85,7 @@ int is_ace( int card );
 
 
 // Checks if the card entered has been dealt
-int is_dealt( int card );
+int is_dealt( char card );
 // {
 //  	PRECONDITIONS  : none
 //  	POSTCONDITIONS : none

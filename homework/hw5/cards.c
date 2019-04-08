@@ -21,12 +21,12 @@ void print_card( char card ) // DONE-ISH
 	 *       4 Clubs
 	 */
 	
-	char** value_arr[13] = { "Ace","1","2","3","4","5","6","7","8","9","10",
+	char *value_arr[14] = { "Ace","1","2","3","4","5","6","7","8","9","10",
 							 "Jack","Queen","King" };
-	char suite_arr[4] = { CLUBS, HEARTS, DIAMONDS, SPADES };
+	char *suite_arr[4] = { "CLUBS", "HEARTS", "DIAMONDS", "SPADES" };
 
 	int card_value = card & VALUE_MASK;
-	int card_suite = card & SUITE_MASK;
+	int card_suite = (card & SUITE_MASK) / 16;
 
 	printf("%s %s", value_arr[card_value], suite_arr[card_suite]);
 } // END FUNCTION print_card
@@ -59,7 +59,7 @@ int is_ace( char card )
 	 *
 	 */
 
-	int _ace = 0
+	int _ace = 0;
 	if ( (card & VALUE_MASK) == ACE )
 	{
 		_ace = 1;

@@ -110,7 +110,12 @@ int main( int argc, char const *argv[] )
     // player1_hand[0] = (TEN | DIAMONDS) | DEALT;
     // player1_hand[1] = (FIVE | SPADES)  | DEALT;
 
-    int size = deal( deck, deck[0] );
+    char *new_dealt_card = (char*) malloc (sizeof(int));
+    *new_dealt_card = 0;
+
+    int size = deal( deck, new_dealt_card );
+
+    printf("New deck size is: %d\n", size);
 
 
     return 0; // Return statement
