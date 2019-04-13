@@ -10,7 +10,8 @@
 
 typedef struct wordList 
 { 
-	char* word; 
+	char* word;                 // the subword in question
+
 	char **list;                // an array of pointers to 
 	                            // valid words that contain  
 	                            // this word 
@@ -21,16 +22,50 @@ typedef struct wordList
 	struct wordList *greatword; // word greater than 
 } wordList_t; 
 
-/*=============================*/
 /*=== Function Declarations ===*/
-/*=============================*/
 
-void print(wordList_t *node);
-
+// ???
 wordList_t* search(wordList_t *node,char *word);
+// {
+//  	PRECONDITIONS  : ?????????
+//  	POSTCONDITIONS : ?????????
+//  	RETURN         : a struct wordList_t pointer to where word was found
+//		COMMENTS       : honestly no fucking clue what to do here
+// }
 
+// ???
 void insert(wordList_t **node, char* word);
+// {
+//  	PRECONDITIONS  : node and word are not null
+//  	POSTCONDITIONS : data is inserted into the tree
+//  	RETURN         : none
+//		COMMENTS       : honestly no fucking clue what to do here
+// }
 
+// Traverse the tree and print all subwords and the words that contain them
+void print(wordList_t *node);
+// {
+//  	PRECONDITIONS  : Node is not null
+//  	POSTCONDITIONS : none
+//  	RETURN         : none
+//		COMMENTS       : prints all the things
+// }
+
+// Traverse the tree and delete everything that was malloc'd
 void clean_up(wordList_t *node);
+// {
+//  	PRECONDITIONS  : Node is not null
+//  	POSTCONDITIONS : Everything that was malloc'd is deleted
+//  	RETURN         : none
+//		COMMENTS       : frees up memory and such
+// }
 
+// Check if file pointer is NULL
+void file_check(FILE* fptr);
+// {
+//  	PRECONDITIONS  : none
+//  	POSTCONDITIONS : none
+//  	RETURN         : none
+//		COMMENTS       : really just to make sure we don't start fucking with NNULL
+// }
 #endif

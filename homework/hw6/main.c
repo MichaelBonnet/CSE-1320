@@ -13,6 +13,11 @@
 /*=== Main Function ===*/
 int main(int argc, char const *argv[])
 {
-	
+	FILE *fptr;
+	fptr = fopen("words.txt", "r");
+	file_check(fptr);
+
+	fclose(fptr);
+
 	return 0;
 }
